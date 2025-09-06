@@ -1,0 +1,55 @@
+.header {
+  width: 100%;
+  background: black;
+  color: white;
+  display: flex;
+  justify-content: space-between; /* keeps logo left, menu right */
+  align-items: center;
+  height: 50px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+/* Logo side */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-img {
+  width: 40px;
+  height: auto;
+}
+
+.logo:hover .logo-img {
+  content: url('/flopdrop.png');
+}
+
+.logo-text {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+/* Navigation links */
+.nav {
+  display: flex;      /* make links horizontal */
+  gap: 20px;          /* spacing between links */
+}
+
+.nav-bar {
+  margin-right: 150px; /* space from right edge */
+}
+
+.nav a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  transition: color 0.2s ease-in-out;
+}
+
+.nav a:hover {
+  color: yellow;
+}

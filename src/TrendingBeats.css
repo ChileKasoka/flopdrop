@@ -1,0 +1,38 @@
+.trending-beats {
+  padding: 2rem;
+  text-align: center;
+}
+
+.beats-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.beat-card {
+  background: #111;
+  color: #fff;
+  padding: 1rem;
+  border-radius: 10px;
+  transition: transform 0.2s;
+}
+
+.beat-card:hover {
+  transform: scale(1.03);
+  background: #222;
+}
+
+.play-btn {
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: #ffdd00;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.play-btn:hover {
+  background: #ffc700;
+}

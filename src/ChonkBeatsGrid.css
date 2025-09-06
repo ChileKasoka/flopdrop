@@ -1,0 +1,56 @@
+.chonk-grid-section {
+  padding: 2rem;
+}
+
+.chonk-grid-section h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #ffdd00;
+}
+
+.chonk-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.chonk-card {
+  background: #111;
+  color: #fff;
+  padding: 1rem;
+  border-radius: 10px;
+  text-align: center;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.chonk-card:hover {
+  transform: scale(1.05);
+  background: #222;
+}
+
+.chonk-name {
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.play-btn {
+  padding: 0.5rem 1rem;
+  background: #ffdd00;
+  color: #000;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.play-btn:hover {
+  background: #ffc700;
+}
+
+.now-playing {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 1.1rem;
+  color: #ffdd00;
+}
