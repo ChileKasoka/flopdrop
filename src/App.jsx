@@ -1,5 +1,6 @@
 import Header from "./Header";
 import "./App.css";
+import UploadAudio from "./UploadAudio";
 import ChonkBeatsGrid from "./ChonkBeatsGrid";
 import FeaturedProducers from "./FeaturedProducers";
 import TrendingBeats from "./TrendingBeats";
@@ -17,9 +18,9 @@ export default function App() {
         </div>
 
         <button onClick={() => playTrack(tracks[0])} className="drop-btn">
-          PLAY CHILL BEAT
+          Drop a beat! 🎵
         </button>
-
+        <UploadAudio />
         <ChonkBeatsGrid />
         <FeaturedProducers />
         <TrendingBeats />
