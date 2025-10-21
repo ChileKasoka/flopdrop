@@ -1,0 +1,139 @@
+.player-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(20, 20, 20, 0.85);
+  color: #fff;
+  padding: 24px;
+  border-radius: 20px;
+  width: 340px;
+  margin: 60px auto;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-family: "Poppins", sans-serif;
+}
+
+.cover {
+  width: 100%;
+  border-radius: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  object-fit: cover;
+}
+
+.song-info {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.song-name {
+  font-weight: 600;
+  font-size: 1.3rem;
+  display: block;
+}
+
+.artist-name {
+  color: #aaa;
+  font-size: 0.9rem;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 28px;
+  margin-bottom: 16px;
+}
+
+/* 🟢 Transparent circular buttons */
+.control-btn,
+.main-btn {
+  background: transparent;
+  border: none;
+  color: #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+/* Prev / Next smaller buttons */
+.control-btn svg {
+  width: 26px;
+  height: 26px;
+}
+
+.control-btn:hover {
+  color: #00ff87;
+  transform: scale(1.1);
+}
+
+/* Play / Pause main button */
+.main-btn {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  color: #00ff87;
+  box-shadow: 0 0 15px rgba(0, 255, 135, 0.4);
+  transition: all 0.3s ease;
+}
+
+.main-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 25px rgba(0, 255, 135, 0.7);
+}
+
+/* Hide one icon at a time */
+.icon-pause {
+  display: none;
+}
+
+.amplitude-playing .icon-play {
+  display: none;
+}
+
+.amplitude-playing .icon-pause {
+  display: inline-block;
+}
+
+/* 🎚️ Song progress bar */
+.amplitude-song-slider {
+  width: 100%;
+  appearance: none;
+  height: 6px;
+  border-radius: 5px;
+  background: #333;
+  outline: none;
+  transition: background 0.2s ease-in;
+}
+
+.amplitude-song-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  background: #00ff87;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 10px #00ff87;
+}
+
+.amplitude-song-slider:hover {
+  background: #444;
+}
+
+.time-display {
+  color: white;
+  font-size: 0.9rem;
+  margin-top: 10px;
+  font-family: 'Inter', sans-serif;
+}
+
+.amplitude-current-time,
+.amplitude-duration-time {
+  min-width: 40px;
+  display: inline-block;
+  text-align: center;
+}

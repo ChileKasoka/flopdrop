@@ -1,5 +1,6 @@
 import Header from "./Header";
 import "./App.css";
+import AudioPlayer from "./components/AudioPlayer";
 import UploadAudio from "./UploadAudio";
 import ChonkBeatsGrid from "./ChonkBeatsGrid";
 import FeaturedProducers from "./FeaturedProducers";
@@ -20,6 +21,7 @@ export default function App() {
         <button onClick={() => playTrack(tracks[0])} className="drop-btn">
           Drop a beat! 🎵
         </button>
+        <AudioPlayer />
         <UploadAudio />
         <ChonkBeatsGrid />
         <FeaturedProducers />
