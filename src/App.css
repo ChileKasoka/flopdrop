@@ -43,6 +43,8 @@
 
 /* Push down content so it doesn't hide under header */
 .content {
-  margin-top: 100px;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
   text-align: center;
 }
+

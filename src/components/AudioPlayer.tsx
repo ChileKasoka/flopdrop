@@ -39,19 +39,22 @@ const AudioPlayer = ({ track }: Props) => {
 
   return (
     <div className="player-container">
+      {/* Cover */}
       <img
         data-amplitude-song-info="cover_art_url"
         alt="cover"
         className="cover"
       />
 
+      {/* Song info */}
       <div className="song-info">
         <span data-amplitude-song-info="name" className="song-name"></span>
         <span data-amplitude-song-info="artist" className="artist-name"></span>
       </div>
 
+      {/* Controls */}
       <div className="controls">
-        {/* Previous Button */}
+        {/* Previous */}
         <button className="amplitude-prev control-btn">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -69,9 +72,8 @@ const AudioPlayer = ({ track }: Props) => {
           </svg>
         </button>
 
-        {/* Play / Pause Button */}
+        {/* Play / Pause */}
         <button className="amplitude-play-pause main-btn">
-          {/* ▶️ Play Icon */}
           <svg
             className="icon-play"
             xmlns="http://www.w3.org/2000/svg"
@@ -86,8 +88,6 @@ const AudioPlayer = ({ track }: Props) => {
           >
             <polygon points="5 3 19 12 5 21 5 3"></polygon>
           </svg>
-
-          {/* ⏸ Pause Icon */}
           <svg
             className="icon-pause"
             xmlns="http://www.w3.org/2000/svg"
@@ -105,7 +105,7 @@ const AudioPlayer = ({ track }: Props) => {
           </svg>
         </button>
 
-        {/* Next Button */}
+        {/* Next */}
         <button className="amplitude-next control-btn">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -124,7 +124,10 @@ const AudioPlayer = ({ track }: Props) => {
         </button>
       </div>
 
+      {/* Slider */}
       <input type="range" className="amplitude-song-slider" />
+
+      {/* Time display */}
       <div className="time-display">
         <span className="amplitude-current-time"></span>
         <span> / </span>

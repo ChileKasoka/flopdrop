@@ -14,12 +14,12 @@ interface Props {
 
 export default function ChonkBeatsGrid({ setCurrentTrack, currentTrack }: Props) {
   const beats: Beat[] = [
-    { name: "Chonk Beat 1", file: "/music/DAY12.TIMEGOESBY.mp3", cover: "/images/p1.jpg" },
-    { name: "Chonk Beat 2", file: "/music/DAY16.CRAZYLOOKS2021.wav", cover: "/images/p2.jpg" },
-    { name: "Chonk Beat 3", file: "/music/DAY25.MIXEDUPv2.wav", cover: "/images/p3.jpg" },
-    { name: "Chonk Beat 4", file: "/music/DAY41.EYESCHINESE.snip.wav", cover: "/images/p4.jpg" },
-    { name: "Chonk Beat 5", file: "/music/DAY42.BOW.wav", cover: "/images/p1.jpg" },
-    { name: "Chonk Beat 6", file: "/music/DAY46.INDABOOF.wav", cover: "/images/Chile_passport.jpg" },
+    { name: "TIMEGOESBY", file: "/music/DAY12.TIMEGOESBY.mp3", cover: "/images/p1.jpg" },
+    { name: "CRAZYLOOKS", file: "/music/DAY16.CRAZYLOOKS2021.wav", cover: "/images/p2.jpg" },
+    { name: "MIXEDUP", file: "/music/DAY25.MIXEDUPv2.wav", cover: "/images/p3.jpg" },
+    { name: "EYES CHINESE", file: "/music/DAY41.EYESCHINESE.snip.wav", cover: "/images/p4.jpg" },
+    { name: "BOW", file: "/music/DAY42.BOW.wav", cover: "/images/p1.jpg" },
+    { name: "INDABOOF", file: "/music/DAY46.INDABOOF.wav", cover: "/images/Chile_passport.jpg" },
   ];
 
   const playBeat = (beat: Beat) => {
