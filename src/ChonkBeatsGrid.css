@@ -33,6 +33,14 @@
   font-weight: bold;
 }
 
+.cover-thumb {
+  width: 150px;      /* Default width */
+  height: 150px;     /* Default height */
+  object-fit: cover; /* Crop & fit images nicely */
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
 .play-btn {
   padding: 0.5rem 1rem;
   background: #ffdd00;

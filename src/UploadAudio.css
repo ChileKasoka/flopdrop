@@ -1,0 +1,62 @@
+/* Page wrapper centers the upload card perfectly */
+.page-wrapper {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Upload card UI */
+.upload-container {
+  background: #ffffff;
+  padding: 28px 32px;
+  border-radius: 14px;
+  width: 360px;
+  text-align: center;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Hidden file input */
+.hidden-input {
+  display: none;
+}
+
+/* Main button */
+.select-btn,
+.upload-btn {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 10px;
+  border: none;
+  background: #333;
+  color: white;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.select-btn:hover,
+.upload-btn:hover {
+  background: #555;
+}
+
+.upload-btn:disabled {
+  background: #777;
+  cursor: not-allowed;
+}
+
+/* File name and status text */
+.file-name {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: #444;
+}
+
+.status-text {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: green;
+}

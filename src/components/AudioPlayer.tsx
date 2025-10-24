@@ -2,23 +2,40 @@ import { useEffect } from "react";
 import Amplitude from "amplitudejs";
 import "./AudioPlayer.css";
 
-const AudioPlayer = () => {
+interface Track {
+  name: string;
+  file: string;
+  cover?: string;
+  artist?: string;
+}
+
+interface Props {
+  track: Track | null;
+}
+
+const AudioPlayer = ({ track }: Props) => {
   useEffect(() => {
+    if (!track) return;
+
     Amplitude.init({
       songs: [
         {
-          name: "Summer Breeze",
-          artist: "C Kayzy",
-          url: "/music/DAY19.BRAINCELLS.mp3",
-          cover_art_url: "/images/Chile_passport.jpg",
-        }
+          name: track.name,
+          artist: track.artist || "C Kayzy",
+          url: track.file,
+          cover_art_url: track.cover || "/images/Chile_passport.jpg",
+        },
       ],
     });
+
+    Amplitude.play();
 
     return () => {
       Amplitude.stop();
     };
-  }, []);
+  }, [track]);
+
+  if (!track) return null;
 
   return (
     <div className="player-container">
@@ -108,10 +125,10 @@ const AudioPlayer = () => {
       </div>
 
       <input type="range" className="amplitude-song-slider" />
-      <div class="time-display">
-        <span class="amplitude-current-time"></span>
+      <div className="time-display">
+        <span className="amplitude-current-time"></span>
         <span> / </span>
-        <span class="amplitude-duration-time"></span>
+        <span className="amplitude-duration-time"></span>
       </div>
     </div>
   );
