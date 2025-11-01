@@ -13,9 +13,10 @@ export default function Header() {
       </div>
       <div className="nav-bar">
         <nav className="nav">
-          <a href="#chonkbeats">Chonk Beats</a>
-          <a href="#keyboard">My Library</a>
-          <a href="#chaos">Reviews</a>
+          <a href="/">Chonk Beats</a>
+          <a href="/upload">My Library</a>
+          <a href="/login">Login</a>
+          <a href="/register">Register</a>
         </nav>
       </div>
     </header>
