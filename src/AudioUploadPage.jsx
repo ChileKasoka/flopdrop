@@ -52,7 +52,7 @@ const AudioUploadPage = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8080/upload/multiple",
+        "http://localhost:8080/upload",
         formData,
         {
           headers: {
@@ -76,7 +76,7 @@ const AudioUploadPage = () => {
       console.error(err);
       if (err.response && err.response.status === 401) {
         alert("Unauthorized! Please login again.");
-        window.location.href = "/login";
+        // window.location.href = "/login";
       } else {
         alert("Upload failed!");
       }
