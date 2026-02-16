@@ -1,19 +1,21 @@
+/* Header */
 .header {
   width: 100%;
   background: black;
   color: white;
   display: flex;
-  justify-content: space-between; /* keeps logo left, menu right */
+  justify-content: space-between;
   align-items: center;
-  height: 50px;
+  height: 60px; /* match sidebar offset */
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 100;
+  z-index: 1100; /* higher than sidebar */
 }
 
+
 /* Logo side */
-.logo {
+.app.logo {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -24,7 +26,7 @@
   height: auto;
 }
 
-.logo:hover .logo-img {
+.app.logo:hover .logo-img {
   content: url('/flopdrop.png');
 }
 
@@ -34,22 +36,22 @@
 }
 
 /* Navigation links */
-.nav {
+.nav-header {
   display: flex;      /* make links horizontal */
   gap: 20px;          /* spacing between links */
 }
 
-.nav-bar {
+.nav-header-bar {
   margin-right: 150px; /* space from right edge */
 }
 
-.nav a {
+.nav-header a {
   text-decoration: none;
   color: white;
   font-weight: bold;
   transition: color 0.2s ease-in-out;
 }
 
-.nav a:hover {
+.nav-header a:hover {
   color: yellow;
 }

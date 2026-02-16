@@ -1,36 +1,116 @@
+/* Root container */
 #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
+  /* Remove text-align so header nav is not affected */
+}
+
+/* Overall layout */
+.app-layout {
+  display: flex;
+  flex-direction: column; /* header on top, then main area */
+  min-height: 100vh;
+  background: #0f0f0f;
+  color: white;
+}
+
+/* Header stays full width */
+
+
+/* Main area below header */
+.main-area {
+  display: flex;
+  flex: 1;
+  margin-top: 60px; /* space for fixed header height */
+}
+
+/* Sidebar */
+.side-menu {
+  width: 240px;
+  background: #111;
+  color: white;
+  padding: 20px 15px;
+  flex-shrink: 0;
+  transition: width 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 60px); /* adjust for header height */
+}
+
+.side-menu.collapsed {
+  width: 80px;
+}
+
+/* Sidebar menu items */
+.menu-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.toggle-btn {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 10px;
+  margin-bottom: 8px;
+  text-decoration: none;
+  color: #aaa;
+  border-radius: 8px;
+  transition: 0.2s ease;
+}
+
+.menu-item:hover {
+  background: #222;
+  color: white;
+}
+
+.menu-item.active {
+  background: #1db954;
+  color: white;
+}
+
+/* Logout button */
+.logout {
+  margin-top: auto;
+  cursor: pointer;
+  color: #ff4d4d;
+}
+
+/* Main content inside pages */
+.main-content {
+  padding: 30px;
   text-align: center;
 }
 
-.logo {
+/* Logo animations (renamed to avoid collision with header) */
+.app-logo {
   height: 6em;
   padding: 1.5em;
   will-change: filter;
   transition: filter 300ms;
 }
-.logo:hover {
+
+.app-logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
-.logo.react:hover {
+
+.app-logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
 @keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 .card {
@@ -41,10 +121,9 @@
   color: #888;
 }
 
-/* Push down content so it doesn't hide under header */
+/* Content wrapper adjustments */
 .content {
   margin-top: 0 !important;
   padding-top: 0 !important;
   text-align: center;
 }
-
