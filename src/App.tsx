@@ -7,7 +7,7 @@ import AudioPlayer from "./components/AudioPlayer.tsx";
 import ChonkBeatsGrid from "./ChonkBeatsGrid.tsx";
 import FeaturedProducers from "./FeaturedProducers.jsx";
 import TrendingBeats from "./TrendingBeats.jsx";
-import UploadAudioPage from "./AudioUploadPage.jsx";
+import UploadAudioPage from "./AudioUploadPage.tsx";
 import RegisterPage from "./RegisterPage.jsx";
 import LoginPage from "./LoginPage.jsx";
 import SideMenu from "./components/SideMenu";
@@ -28,13 +28,9 @@ export default function App() {
 
         <ChonkBeatsGrid currentTrack={currentTrack} setCurrentTrack={setCurrentTrack} />
 
-        <div>
-          <img src="/flopdrop.png" alt="FlopDrop Logo" width="230" height="230" />
-        </div>
-
-        <button onClick={() => navigate("/upload")} className="drop-btn">
+        {/* <button onClick={() => navigate("/upload")} className="drop-btn">
           Drop a beat! 🎵
-        </button>
+        </button> */}
 
         <FeaturedProducers />
         <TrendingBeats />

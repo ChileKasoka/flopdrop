@@ -3,7 +3,8 @@ import "./SideMenu.css";
 import {
   Music,
   Upload,
-  BarChart3,
+  Flame,
+  Users,
   Heart,
   Home,
   User,
@@ -11,6 +12,7 @@ import {
   LogOut,
   Menu,
   ChevronLeft,
+  Radio,
 } from "lucide-react";
 
 interface SideMenuProps {
@@ -24,20 +26,21 @@ export default function SideMenu({
 }: SideMenuProps) {
   const location = useLocation();
 
-  const menuItems = [
+  const mainMenu = [
     { name: "Home", icon: <Home size={18} />, path: "/" },
-    { name: "Library", icon: <Music size={18} />, path: "/library" },
-    { name: "Upload Beat", icon: <Upload size={18} />, path: "/upload" },
-    { name: "Analytics", icon: <BarChart3 size={18} />, path: "/analytics" },
-    { name: "Favorites", icon: <Heart size={18} />, path: "/favorites" },
-    { name: "Profile", icon: <User size={18} />, path: "/profile" },
-    { name: "Settings", icon: <Settings size={18} />, path: "/settings" },
+    { name: "Trending", icon: <Flame size={18} />, path: "/trending" },
+    { name: "Browse Beats", icon: <Music size={18} />, path: "/browse" },
+    { name: "Collabs", icon: <Users size={18} />, path: "/collabs" },
+    { name: "Producers", icon: <User size={18} />, path: "/producers" },
   ];
+
+  const genres = ["Trap", "Drill", "R&B", "Afrobeat", "Lo-fi", "EDM"];
 
   return (
     <aside className={`side-menu ${collapsed ? "collapsed" : ""}`}>
+      {/* Top */}
       <div className="menu-top">
-        {!collapsed && <div className="menu-logo">🎛 Producer Hub</div>}
+        {!collapsed && <div className="menu-logo">🎛 FlopDrop</div>}
 
         <button
           className="toggle-btn"
@@ -48,7 +51,9 @@ export default function SideMenu({
       </div>
 
       <nav>
-        {menuItems.map((item) => (
+
+        {/* Primary Navigation */}
+        {mainMenu.map((item) => (
           <Link
             key={item.name}
             to={item.path}
@@ -61,10 +66,54 @@ export default function SideMenu({
           </Link>
         ))}
 
-        <div className="menu-item logout">
-          <LogOut size={18} />
-          {!collapsed && <span>Logout</span>}
+        {/* Upload CTA */}
+        <Link to="/upload" className="menu-item upload-cta">
+          <Upload size={18} />
+          {!collapsed && <span>Drop a Track</span>}
+        </Link>
+
+        {/* Genre Section */}
+        {!collapsed && (
+          <div className="sidebar-section">
+            <div className="section-title">
+              <Radio size={14} /> Genres
+            </div>
+            {genres.map((genre) => (
+              <div key={genre} className="genre-item">
+                {genre}
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* Live Activity */}
+        {!collapsed && (
+          <div className="sidebar-section">
+            <div className="section-title">🔥 Live</div>
+            <div className="activity-item">+ 3 new drops</div>
+            <div className="activity-item">+ 5 new likes</div>
+            <div className="activity-item">1 collab invite</div>
+          </div>
+        )}
+
+        {/* Bottom Section */}
+        <div className="bottom-section">
+          <Link to="/favorites" className="menu-item">
+            <Heart size={18} />
+            {!collapsed && <span>Favorites</span>}
+          </Link>
+
+          <Link to="/settings" className="menu-item">
+            <Settings size={18} />
+            {!collapsed && <span>Settings</span>}
+          </Link>
+
+          <div className="menu-item logout">
+            <LogOut size={18} />
+            {!collapsed && <span>Logout</span>}
+          </div>
         </div>
+
       </nav>
     </aside>
   );

@@ -1,62 +1,111 @@
-/* Page wrapper centers the upload card perfectly */
-.page-wrapper {
-  width: 100vw;
-  height: 100vh;
+/* Full page background */
+.upload-page {
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  background: radial-gradient(circle at top left, #1f1f1f, #0f0f0f);
+  padding: 20px;
 }
 
-/* Upload card UI */
-.upload-container {
-  background: #ffffff;
-  padding: 28px 32px;
-  border-radius: 14px;
-  width: 360px;
+/* Glass card */
+.upload-card {
+  width: 420px;
+  padding: 40px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
   text-align: center;
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
-}
-
-/* Hidden file input */
-.hidden-input {
-  display: none;
-}
-
-/* Main button */
-.select-btn,
-.upload-btn {
-  width: 100%;
-  padding: 12px;
-  margin-top: 10px;
-  font-size: 1rem;
-  font-weight: 600;
-  border-radius: 10px;
-  border: none;
-  background: #333;
   color: white;
+}
+
+/* Header */
+.upload-header h2 {
+  margin-top: 10px;
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.upload-header p {
+  font-size: 0.9rem;
+  color: #aaa;
+  margin-top: 5px;
+}
+
+/* Drop Zone */
+.drop-zone {
+  margin-top: 30px;
+  padding: 35px 20px;
+  border-radius: 16px;
+  border: 2px dashed rgba(255, 255, 255, 0.15);
   cursor: pointer;
-  transition: 0.25s;
+  transition: all 0.3s ease;
 }
 
-.select-btn:hover,
-.upload-btn:hover {
-  background: #555;
+.drop-zone:hover {
+  border-color: #1db954;
+  background: rgba(29, 185, 84, 0.08);
 }
 
-.upload-btn:disabled {
-  background: #777;
-  cursor: not-allowed;
+.drop-zone p {
+  margin-top: 12px;
+  font-weight: 500;
 }
 
-/* File name and status text */
+.drop-zone span {
+  font-size: 0.8rem;
+  color: #888;
+}
+
 .file-name {
+  font-size: 0.95rem;
+  font-weight: 500;
   margin-top: 10px;
-  font-size: 0.9rem;
-  color: #444;
 }
 
-.status-text {
-  margin-top: 10px;
-  font-size: 0.9rem;
-  color: green;
+/* Upload Button */
+.upload-button {
+  width: 100%;
+  margin-top: 25px;
+  padding: 14px;
+  border-radius: 14px;
+  border: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  background: linear-gradient(135deg, #1db954, #1ed760);
+  color: black;
+  transition: all 0.3s ease;
+}
+
+.upload-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(29, 185, 84, 0.4);
+}
+
+.upload-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Loading spinner */
+.spin {
+  animation: spin 1s linear infinite;
+  margin-right: 8px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Status text */
+.status {
+  margin-top: 15px;
+  font-size: 0.85rem;
+  color: #1db954;
 }

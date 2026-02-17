@@ -1,3 +1,7 @@
+/* ===============================
+   SIDEBAR BASE
+================================= */
+
 .side-menu {
   position: fixed;
   top: 60px; /* below header */
@@ -8,71 +12,163 @@
   color: white;
   padding: 20px 15px;
   display: flex;
-  flex-direction: column;  /* stack children vertically */
+  flex-direction: column;
   z-index: 1000;
   transition: width 0.3s ease;
-  overflow: visible; /* hide extra text on collapse */
+  overflow-y: auto; /* allow scrolling */
+  overflow-x: hidden;
+  border-right: 1px solid #1f1f1f;
 }
 
-/* Collapsed width */
+/* Collapsed */
 .side-menu.collapsed {
   width: 80px;
 }
 
-/* Menu items stacked vertically */
-
-
-/* Menu links */
-.menu-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;          /* space between icon and text */
-  padding: 12px 10px;
-  text-decoration: none;
-  color: #aaa;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-  white-space: nowrap;
-  overflow: hidden;   /* hide text on collapse */
+/* Smooth text fade when collapsing */
+.side-menu .menu-item span {
+  transition: opacity 0.2s ease;
 }
 
-/* Hide text on collapse */
 .side-menu.collapsed .menu-item span {
   opacity: 0;
   pointer-events: none;
 }
 
-/* Hover effect */
-.menu-item:hover {
-  background: #222;
-  color: white;
+/* ===============================
+   TOP SECTION
+================================= */
+
+.menu-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 25px;
 }
 
-/* Active item */
-.menu-item.active {
-  background: #1db954;
-  color: white;
+.menu-logo {
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
 }
 
-/* Logout at bottom */
-.logout {
-  margin-top: auto; /* pushes logout to the bottom */
-  cursor: pointer;
-  color: #ff4d4d;
-}
-
-/* Toggle button */
+/* Toggle Button */
 .toggle-btn {
-  position: absolute; /* fixed inside sidebar */
-  top: 10px;
-  right: -20px; /* outside sidebar */
-  background: #111;
-  width: 50px;
+  background: #1a1a1a;
   border: none;
   color: white;
   cursor: pointer;
-  padding: 8px;
-  border-radius: 4px;
-  z-index: 1100;
-  box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  padding: 6px;
+  border-radius: 6px;
+  transition: background 0.2s ease;
+}
+
+.toggle-btn:hover {
+  background: #222;
+}
+
+/* ===============================
+   MENU ITEMS
+================================= */
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 10px;
+  margin-bottom: 6px;
+  text-decoration: none;
+  color: #aaa;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.menu-item:hover {
+  background: #1a1a1a;
+  color: white;
+  transform: translateX(2px);
+}
+
+/* Active */
+.menu-item.active {
+  background: #1db954;
+  color: black;
+  font-weight: 500;
+}
+
+/* Upload CTA */
+.upload-cta {
+  background: #1db954;
+  color: black !important;
+  margin-top: 10px;
+  font-weight: 600;
+}
+
+.upload-cta:hover {
+  background: #18a74a;
+  transform: none;
+}
+
+/* ===============================
+   SECTIONS (Genres / Live)
+================================= */
+
+.sidebar-section {
+  margin-top: 25px;
+  padding-top: 15px;
+  border-top: 1px solid #1f1f1f;
+}
+
+.section-title {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  color: #666;
+}
+
+.genre-item,
+.activity-item {
+  font-size: 0.85rem;
+  margin: 6px 0;
+  color: #bbb;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.genre-item:hover,
+.activity-item:hover {
+  color: #1db954;
+}
+
+/* ===============================
+   BOTTOM SECTION
+================================= */
+
+.bottom-section {
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1px solid #1f1f1f;
+}
+
+.logout {
+  color: #ff4d4d;
+}
+
+.logout:hover {
+  background: rgba(255, 77, 77, 0.1);
+}
+
+/* ===============================
+   SCROLLBAR (Optional Clean Look)
+================================= */
+
+.side-menu::-webkit-scrollbar {
+  width: 6px;
+}
+
+.side-menu::-webkit-scrollbar-thumb {
+  background: #222;
+  border-radius: 10px;
 }
