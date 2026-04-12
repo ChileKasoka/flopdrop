@@ -1,19 +1,7 @@
-import { useState } from "react";
 import "./ChonkBeatsGrid.css";
 
-interface Beat {
-  name: string;
-  file: string;
-  cover: string;
-}
-
-interface Props {
-  setCurrentTrack: (beat: Beat) => void;
-  currentTrack: Beat | null;
-}
-
-export default function ChonkBeatsGrid({ setCurrentTrack, currentTrack }: Props) {
-  const beats: Beat[] = [
+export default function ChonkBeatsGrid({ setCurrentTrack, currentTrack }: { setCurrentTrack: (beat: any) => void; currentTrack: any }) {
+  const beats = [
     { name: "TIMEGOESBY", file: "/music/DAY12.TIMEGOESBY.mp3", cover: "/images/p1.jpg" },
     { name: "CRAZYLOOKS", file: "/music/DAY16.CRAZYLOOKS2021.wav", cover: "/images/p2.jpg" },
     { name: "MIXEDUP", file: "/music/DAY25.MIXEDUPv2.wav", cover: "/images/p3.jpg" },
@@ -22,31 +10,38 @@ export default function ChonkBeatsGrid({ setCurrentTrack, currentTrack }: Props)
     { name: "INDABOOF", file: "/music/DAY46.INDABOOF.wav", cover: "/images/Chile_passport.jpg" },
   ];
 
-  const playBeat = (beat: Beat) => {
+  const playBeat = (beat: { name: string; file: string; cover: string; }) => {
     setCurrentTrack(beat);
   };
 
   return (
     <div className="chonk-grid-section">
-      <h2>🔥 Latest Chonk Beats</h2>
+      <h2>🎧 Latest Chonk Beats</h2>
+
       <div className="chonk-grid">
         {beats.map((beat, index) => (
           <div key={index} className="chonk-card">
-            <img src={beat.cover} alt={beat.name} className="cover-thumb" />
+            
+            <div className="cover-wrapper">
+              <img src={beat.cover} alt={beat.name} />
+              
+              <div className="overlay">
+                <button onClick={() => playBeat(beat)} className="play-btn">
+                  ▶
+                </button>
+              </div>
+            </div>
+
             <div className="chonk-name">{beat.name}</div>
-            <button onClick={() => playBeat(beat)} className="play-btn">
-              ▶ Play
-            </button>
           </div>
         ))}
       </div>
 
       {currentTrack && (
         <div className="now-playing">
-          Now Playing: <strong>{currentTrack.name}</strong>
+          🎶 Now Playing: <strong>{currentTrack.name}</strong>
         </div>
       )}
     </div>
   );
 }
-

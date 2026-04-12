@@ -1,18 +1,25 @@
+/* HEADER BASE */
 .header {
-  width: 100%;
-  background: black;
-  color: white;
-  display: flex;
-  justify-content: space-between; /* keeps logo left, menu right */
-  align-items: center;
-  height: 50px;
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 100;
+  width: 100%;
+  height: 64px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 20px;
+
+  background: rgba(10, 10, 20, 0.7);
+  backdrop-filter: blur(16px);
+
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  z-index: 1000;
 }
 
-/* Logo side */
+/* LOGO */
 .logo {
   display: flex;
   align-items: center;
@@ -20,36 +27,93 @@
 }
 
 .logo-img {
-  width: 40px;
-  height: auto;
-}
-
-.logo:hover .logo-img {
-  content: url('/flopdrop.png');
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
 }
 
 .logo-text {
-  font-size: 1.5rem;
+  font-size: 18px;
   font-weight: bold;
-}
-
-/* Navigation links */
-.nav {
-  display: flex;      /* make links horizontal */
-  gap: 20px;          /* spacing between links */
-}
-
-.nav-bar {
-  margin-right: 150px; /* space from right edge */
-}
-
-.nav a {
-  text-decoration: none;
   color: white;
-  font-weight: bold;
-  transition: color 0.2s ease-in-out;
 }
 
-.nav a:hover {
-  color: yellow;
+/* DESKTOP NAV */
+.desktop-nav {
+  display: flex;
+  gap: 22px;
+  align-items: center;
+  width: auto;
+  margin: auto;
+}
+
+.desktop-nav a {
+  color: #ddd;
+  text-decoration: none;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.desktop-nav a:hover {
+  color: #a855f7;
+}
+
+/* CTA BUTTON */
+.cta {
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #a855f7, #6366f1);
+  color: white !important;
+  font-weight: 600;
+}
+
+/* MOBILE MENU BUTTON */
+.menu-btn {
+  display: none;
+  font-size: 26px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+/* MOBILE MENU */
+.mobile-menu {
+  position: fixed;
+  top: 64px;
+  right: -100%;
+
+  width: 70%;
+  height: 100vh;
+
+  background: rgba(15, 15, 25, 0.95);
+  backdrop-filter: blur(20px);
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  padding: 30px;
+  transition: 0.3s ease;
+}
+
+.mobile-menu a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.mobile-menu.open {
+  right: 0;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .desktop-nav {
+    display: none;
+  }
+
+  .menu-btn {
+    display: block;
+  }
 }

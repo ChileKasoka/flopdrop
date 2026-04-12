@@ -9,14 +9,33 @@ const trendingBeats = [
 
 export default function TrendingBeats() {
   return (
-    <div className="trending-beats">
-      <h2>🔥 Popular / Trending Beats</h2>
+    <div className="trending-section">
+
+      <div className="trending-header">
+        <h2>🔥 Trending Snips</h2>
+        <p>Most played tracks this week</p>
+      </div>
+
       <div className="beats-list">
         {trendingBeats.map((beat, i) => (
           <div key={i} className="beat-card">
-            <h3>{beat.name}</h3>
-            <p>🎧 Plays: {beat.plays} | ⬇ Downloads: {beat.downloads}</p>
-            <button className="play-btn">▶ Play</button>
+
+            {/* RANK BADGE */}
+            <div className="rank">#{i + 1}</div>
+
+            {/* INFO */}
+            <div className="beat-info">
+              <h3>{beat.name}</h3>
+
+              <div className="stats">
+                <span>🎧 {beat.plays.toLocaleString()}</span>
+                <span>⬇ {beat.downloads.toLocaleString()}</span>
+              </div>
+            </div>
+
+            {/* ACTION */}
+            <button className="play-btn">▶</button>
+
           </div>
         ))}
       </div>

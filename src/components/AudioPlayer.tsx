@@ -1,138 +1,96 @@
-import { useEffect } from "react";
-import Amplitude from "amplitudejs";
+import { useEffect, useRef, useState } from "react";
 import "./AudioPlayer.css";
 
-interface Track {
-  name: string;
-  file: string;
-  cover?: string;
-  artist?: string;
-}
+const AudioPlayer = ({ track }: { track: any }) => {
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [progress, setProgress] = useState(0);
 
-interface Props {
-  track: Track | null;
-}
-
-const AudioPlayer = ({ track }: Props) => {
   useEffect(() => {
     if (!track) return;
 
-    Amplitude.init({
-      songs: [
-        {
-          name: track.name,
-          artist: track.artist || "C Kayzy",
-          url: track.file,
-          cover_art_url: track.cover || "/images/Chile_passport.jpg",
-        },
-      ],
-    });
-
-    Amplitude.play();
-
-    return () => {
-      Amplitude.stop();
-    };
+    if (audioRef.current) {
+      audioRef.current.src = track.file;
+      audioRef.current.play();
+      setIsPlaying(true);
+    }
   }, [track]);
+
+  const togglePlay = () => {
+    if (!audioRef.current) return;
+
+    if (isPlaying) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current.play();
+    }
+
+    setIsPlaying(!isPlaying);
+  };
+
+  const handleTimeUpdate = () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    const percent = (audio.currentTime / audio.duration) * 100;
+    setProgress(percent || 0);
+  };
+
+  const seek = (e: { target: { value: any; }; }) => {
+    const audio = audioRef.current;
+    const value = e.target.value;
+
+    if (!audio) return;
+    audio.currentTime = (value / 100) * audio.duration;
+    setProgress(value);
+  };
 
   if (!track) return null;
 
   return (
-    <div className="player-container">
-      {/* Cover */}
-      <img
-        data-amplitude-song-info="cover_art_url"
-        alt="cover"
-        className="cover"
+    <div className="player-dock">
+
+      <audio
+        ref={audioRef}
+        onTimeUpdate={handleTimeUpdate}
       />
 
-      {/* Song info */}
-      <div className="song-info">
-        <span data-amplitude-song-info="name" className="song-name"></span>
-        <span data-amplitude-song-info="artist" className="artist-name"></span>
+      {/* LEFT */}
+      <div className="player-left">
+        <img src={track.cover} className="cover" />
+        <div>
+          <div className="title">{track.name}</div>
+          <div className="artist">{track.artist || "C Kayzy"}</div>
+        </div>
       </div>
 
-      {/* Controls */}
-      <div className="controls">
-        {/* Previous */}
-        <button className="amplitude-prev control-btn">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="28"
-            height="28"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <polygon points="11 19 2 12 11 5 11 19"></polygon>
-            <line x1="22" y1="19" x2="22" y2="5"></line>
-          </svg>
-        </button>
+      {/* CENTER */}
+      <div className="player-center">
 
-        {/* Play / Pause */}
-        <button className="amplitude-play-pause main-btn">
-          <svg
-            className="icon-play"
-            xmlns="http://www.w3.org/2000/svg"
-            width="34"
-            height="34"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <polygon points="5 3 19 12 5 21 5 3"></polygon>
-          </svg>
-          <svg
-            className="icon-pause"
-            xmlns="http://www.w3.org/2000/svg"
-            width="34"
-            height="34"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <rect x="6" y="4" width="4" height="16"></rect>
-            <rect x="14" y="4" width="4" height="16"></rect>
-          </svg>
-        </button>
+        <div className="controls">
+          <button className="ctrl">⏮</button>
 
-        {/* Next */}
-        <button className="amplitude-next control-btn">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="28"
-            height="28"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <polygon points="13 19 22 12 13 5 13 19"></polygon>
-            <line x1="2" y1="19" x2="2" y2="5"></line>
-          </svg>
-        </button>
+          <button className="play" onClick={togglePlay}>
+            {isPlaying ? "❚❚" : "▶"}
+          </button>
+
+          <button className="ctrl">⏭</button>
+        </div>
+
+        {/* PROGRESS */}
+        <input
+          type="range"
+          value={progress}
+          onChange={seek}
+          className="progress"
+        />
       </div>
 
-      {/* Slider */}
-      <input type="range" className="amplitude-song-slider" />
-
-      {/* Time display */}
-      <div className="time-display">
-        <span className="amplitude-current-time"></span>
-        <span> / </span>
-        <span className="amplitude-duration-time"></span>
+      {/* RIGHT */}
+      <div className="player-right">
+        <span>{Math.floor(progress)}%</span>
       </div>
+
     </div>
   );
 };

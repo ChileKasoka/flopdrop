@@ -24,10 +24,6 @@ export default function App() {
 
         <ChonkBeatsGrid currentTrack={currentTrack} setCurrentTrack={setCurrentTrack} />
 
-        <div>
-          <img src="/flopdrop.png" alt="FlopDrop Logo" width="230" height="230" />
-        </div>
-
         <button onClick={() => navigate("/upload")} className="drop-btn">
           Drop a beat! 🎵
         </button>

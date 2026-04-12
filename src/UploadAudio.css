@@ -1,62 +1,120 @@
-/* Page wrapper centers the upload card perfectly */
-.page-wrapper {
+/* PAGE BACKGROUND */
+.upload-page {
   width: 100vw;
   height: 100vh;
+
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+
+  background: radial-gradient(circle at top, #1a1a2e, #0f0f1a);
+  color: white;
 }
 
-/* Upload card UI */
-.upload-container {
-  background: #ffffff;
-  padding: 28px 32px;
-  border-radius: 14px;
-  width: 360px;
+/* CARD */
+.upload-card {
+  width: 380px;
+  padding: 28px;
+
+  border-radius: 18px;
+
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+
+  backdrop-filter: blur(18px);
+  box-shadow: 0 15px 50px rgba(0,0,0,0.6);
+
   text-align: center;
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
 }
 
-/* Hidden file input */
-.hidden-input {
-  display: none;
+/* HEADER */
+.upload-header h2 {
+  font-size: 20px;
+  margin-bottom: 6px;
 }
 
-/* Main button */
-.select-btn,
+.upload-header p {
+  font-size: 12px;
+  color: #aaa;
+  margin-bottom: 20px;
+}
+
+/* DROPZONE */
+.dropzone {
+  border: 2px dashed rgba(168,85,247,0.4);
+  border-radius: 14px;
+
+  padding: 30px;
+  cursor: pointer;
+
+  transition: 0.3s;
+
+  background: rgba(255,255,255,0.03);
+}
+
+.dropzone:hover {
+  border-color: #a855f7;
+  background: rgba(168,85,247,0.08);
+  transform: scale(1.02);
+}
+
+/* ICON */
+.icon {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+/* TEXT */
+.dropzone p {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.dropzone span {
+  font-size: 11px;
+  color: #aaa;
+}
+
+/* FILE NAME */
+.file-name {
+  font-weight: 600;
+  color: #a855f7;
+}
+
+/* BUTTON */
 .upload-btn {
   width: 100%;
+  margin-top: 16px;
+
   padding: 12px;
-  margin-top: 10px;
-  font-size: 1rem;
-  font-weight: 600;
-  border-radius: 10px;
+  border-radius: 12px;
+
   border: none;
-  background: #333;
-  color: white;
   cursor: pointer;
-  transition: 0.25s;
+
+  font-weight: 600;
+  font-size: 14px;
+
+  color: white;
+  background: linear-gradient(135deg, #a855f7, #6366f1);
+
+  transition: 0.3s;
 }
 
-.select-btn:hover,
 .upload-btn:hover {
-  background: #555;
+  transform: translateY(-2px);
+  box-shadow: 0 0 25px rgba(168,85,247,0.6);
 }
 
 .upload-btn:disabled {
-  background: #777;
+  opacity: 0.6;
   cursor: not-allowed;
+  transform: none;
 }
 
-/* File name and status text */
-.file-name {
-  margin-top: 10px;
-  font-size: 0.9rem;
-  color: #444;
-}
-
+/* STATUS */
 .status-text {
-  margin-top: 10px;
-  font-size: 0.9rem;
-  color: green;
+  margin-top: 12px;
+  font-size: 12px;
+  color: #22c55e;
 }

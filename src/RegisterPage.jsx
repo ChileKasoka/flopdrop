@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import { User, Mail, Lock } from "lucide-react";
 import "./RegisterPage.css";
 
 const RegisterPage = () => {
@@ -19,10 +20,8 @@ const RegisterPage = () => {
     try {
       const res = await axios.post("http://localhost:8080/auth/register", formData);
       alert("Registration successful!");
-      console.log(res.data);
       window.location.href = "/login";
     } catch (err) {
-      console.error(err);
       alert("Registration failed. Please try again.");
     }
   };
@@ -30,36 +29,45 @@ const RegisterPage = () => {
   return (
     <div className="register-page">
       <div className="register-card">
-        <h2>Create Account</h2>
+        <h2>🎧 Join the Vibe</h2>
+        <p className="subtitle">Create your account and start your music journey</p>
+
         <form onSubmit={handleSubmit}>
-          <label>Username</label>
-          <input
-            type="text"
-            name="username"
-            placeholder="Enter your name"
-            value={formData.username}
-            onChange={handleChange}
-          />
+          
+          <div className="input-group">
+            <User size={18} />
+            <input
+              type="text"
+              name="username"
+              placeholder="Username"
+              value={formData.username}
+              onChange={handleChange}
+            />
+          </div>
 
-          <label>Email</label>
-          <input
-            type="email"
-            name="email"
-            placeholder="Enter your email"
-            value={formData.email}
-            onChange={handleChange}
-          />
+          <div className="input-group">
+            <Mail size={18} />
+            <input
+              type="email"
+              name="email"
+              placeholder="Email address"
+              value={formData.email}
+              onChange={handleChange}
+            />
+          </div>
 
-          <label>Password</label>
-          <input
-            type="password"
-            name="password"
-            placeholder="Create password"
-            value={formData.password}
-            onChange={handleChange}
-          />
+          <div className="input-group">
+            <Lock size={18} />
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              value={formData.password}
+              onChange={handleChange}
+            />
+          </div>
 
-          <button type="submit">Register</button>
+          <button type="submit">Create Account</button>
         </form>
 
         <p className="redirect-text">

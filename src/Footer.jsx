@@ -5,7 +5,9 @@ export default function Footer() {
     <footer className="footer">
       <div className="footer-top">
         <div className="footer-about">
-          <h3>💦 FlopDrop</h3>
+        <div>
+          <img src="/flopdrop.png" alt="FlopDrop Logo" width="180" height="180" />
+        </div>
           <p>
             FlopDrop is the ultimate music platform for producers. Browse, play,
             and discover the latest Chonk beats, collaborate with other

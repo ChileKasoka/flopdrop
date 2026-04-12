@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import { Mail, Lock } from "lucide-react";
 import "./LoginPage.css";
 
 const LoginPage = () => {
@@ -22,11 +23,9 @@ const LoginPage = () => {
       if (token) {
         localStorage.setItem("token", token);
         localStorage.setItem("user", JSON.stringify(res.data.user));
-        alert("Login successful!");
-        window.location.href = "/upload"; // redirect to upload page
+        window.location.href = "/upload";
       }
     } catch (err) {
-      console.error(err);
       alert("Invalid email or password.");
     }
   };
@@ -34,25 +33,32 @@ const LoginPage = () => {
   return (
     <div className="login-page">
       <div className="login-card">
-        <h2>Welcome Back</h2>
-        <form onSubmit={handleSubmit}>
-          <label>Email</label>
-          <input
-            type="email"
-            name="email"
-            placeholder="Enter your email"
-            value={formData.email}
-            onChange={handleChange}
-          />
+        <h2>🎶 Welcome Back</h2>
+        <p className="subtitle">Sign in and continue your vibe</p>
 
-          <label>Password</label>
-          <input
-            type="password"
-            name="password"
-            placeholder="Enter password"
-            value={formData.password}
-            onChange={handleChange}
-          />
+        <form onSubmit={handleSubmit}>
+          
+          <div className="input-group">
+            <Mail size={18} />
+            <input
+              type="email"
+              name="email"
+              placeholder="Email address"
+              value={formData.email}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="input-group">
+            <Lock size={18} />
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              value={formData.password}
+              onChange={handleChange}
+            />
+          </div>
 
           <button type="submit">Login</button>
         </form>

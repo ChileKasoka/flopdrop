@@ -18,108 +18,87 @@ const AudioUploadPage = () => {
   };
 
   const handleUpload = async () => {
-    if (!category) {
-      alert("Please enter a category");
-      return;
-    }
-    if (files.length === 0) {
-      alert("Please select at least one audio file");
-      return;
-    }
+    if (!category || files.length === 0) return alert("Fill all fields");
 
     const token = localStorage.getItem("token");
-    if (!token) {
-      alert("Please login first!");
-      window.location.href = "/login";
-      return;
-    }
+    if (!token) return (window.location.href = "/login");
 
     setUploading(true);
+
     const formData = new FormData();
     formData.append("category", category);
 
-    for (const file of files) {
-      const title = titles[file.name] || file.name.replace(/\.[^/.]+$/, "");
+    files.forEach((file) => {
+      const title =
+        titles[file.name] || file.name.replace(/\.[^/.]+$/, "");
+
       formData.append("audio", file);
       formData.append(`title_${file.name}`, title);
-
-      // capture duration (optional)
-      const audio = new Audio(URL.createObjectURL(file));
-      audio.addEventListener("loadedmetadata", () => {
-        formData.append(`duration_${file.name}`, audio.duration);
-      });
-    }
+    });
 
     try {
-      const response = await axios.post(
-        "http://localhost:8080/upload",
-        formData,
-        {
-          headers: {
-            "Authorization": `Bearer ${token}`,
-            "Content-Type": "multipart/form-data",
-          },
-          onUploadProgress: (progressEvent) => {
-            const percentCompleted = Math.round(
-              (progressEvent.loaded * 100) / progressEvent.total
-            );
-            setProgress(percentCompleted);
-          },
-        }
-      );
+      await axios.post("http://localhost:8080/upload", formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
+        },
+        onUploadProgress: (e) => {
+          setProgress(Math.round((e.loaded * 100) / e.total));
+        },
+      });
 
-      console.log(response.data);
       alert("Upload successful!");
       setFiles([]);
       setTitles({});
+      setProgress(0);
     } catch (err) {
-      console.error(err);
-      if (err.response && err.response.status === 401) {
-        alert("Unauthorized! Please login again.");
-        // window.location.href = "/login";
-      } else {
-        alert("Upload failed!");
-      }
+      alert("Upload failed!");
     } finally {
       setUploading(false);
-      setProgress(0);
     }
   };
 
   return (
-    <div className="upload-page">
-      <div className="upload-container">
-        <h2>Upload Audio Files</h2>
+    <div className="studio-page">
 
-        <div className="form-group">
-          <label>Category</label>
-          <input
-            type="text"
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-            placeholder="e.g., free-beats, album"
-          />
+      <div className="studio-card">
+
+        {/* HEADER */}
+        <div className="studio-header">
+          <h2>🎧 Creator Upload Studio</h2>
+          <p>Upload and manage your projects like a pro</p>
         </div>
 
-        <div className="form-group">
-          <label>Select Audio Files</label>
+        {/* CATEGORY */}
+        <input
+          className="input"
+          placeholder="Category (e.g. Trap, Afrobeats)"
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+        />
+
+        {/* DROPZONE */}
+        <label className="dropzone">
           <input
             type="file"
             multiple
             accept=".mp3,.wav,.flac,.ogg"
             onChange={handleFilesChange}
           />
-        </div>
+          <div>
+            <p>⬆️ Drag & drop or click to upload snips</p>
+            <span>{files.length} file(s) selected</span>
+          </div>
+        </label>
 
+        {/* FILE LIST */}
         {files.length > 0 && (
-          <div className="file-titles">
-            <h3>File Titles (optional)</h3>
+          <div className="file-list">
             {files.map((file) => (
-              <div key={file.name} className="file-row">
-                <span className="file-name">{file.name}</span>
+              <div key={file.name} className="file-item">
+                <span>{file.name}</span>
                 <input
-                  type="text"
-                  placeholder="Title"
+                  placeholder="Track title"
                   value={titles[file.name] || ""}
                   onChange={(e) =>
                     handleTitleChange(file.name, e.target.value)
@@ -130,8 +109,24 @@ const AudioUploadPage = () => {
           </div>
         )}
 
-        <button onClick={handleUpload} disabled={uploading}>
-          {uploading ? `Uploading ${progress}%` : "Upload"}
+        {/* PROGRESS BAR */}
+        {uploading && (
+          <div className="progress-wrapper">
+            <div
+              className="progress-bar"
+              style={{ width: `${progress}%` }}
+            />
+            <span>{progress}% uploading...</span>
+          </div>
+        )}
+
+        {/* BUTTON */}
+        <button
+          className="upload-btn"
+          onClick={handleUpload}
+          disabled={uploading}
+        >
+          {uploading ? "Uploading..." : "🚀 Upload"}
         </button>
       </div>
     </div>
